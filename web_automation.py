@@ -128,7 +128,13 @@ def do_login(driver: webdriver.Chrome) -> None:
     wait_and_type(driver, USERNAME_SELECTOR, USERNAME)
     wait_and_type(driver, PASSWORD_SELECTOR, PASSWORD)
     wait_and_click(driver, LOGIN_BUTTON_SELECTOR)
-    print("[1/4] Login submitted.")
+
+    # O site abre o menu em nova janela via window.open('menu.jsp','pm')
+    # Aguarda a nova janela aparecer e troca o foco para ela
+    print("[1/4] Waiting for menu window to open ...")
+    WebDriverWait(driver, WAIT_TIMEOUT).until(lambda d: len(d.window_handles) > 1)
+    driver.switch_to.window(driver.window_handles[-1])
+    print("[1/4] Login complete, switched to menu window.")
 
 
 def click_buttons(driver: webdriver.Chrome) -> None:
