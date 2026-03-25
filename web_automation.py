@@ -23,7 +23,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 # CONFIGURATION — edit these values to match your target site
 # ---------------------------------------------------------------------------
 
-LOGIN_URL = "https://example.com/login"  # TODO: replace with the login page URL
+LOGIN_URL = "https://www.gestaodevaletransporte.com.br/crm/main.jsp"
 
 USERNAME = "your_username"               # TODO: replace with your username / e-mail
 PASSWORD = "your_password"               # TODO: replace with your password
@@ -31,7 +31,7 @@ PASSWORD = "your_password"               # TODO: replace with your password
 # CSS selectors or XPaths for the login form fields and submit button
 USERNAME_SELECTOR = "#username"          # TODO: CSS selector for the username input
 PASSWORD_SELECTOR = "#password"          # TODO: CSS selector for the password input
-LOGIN_BUTTON_SELECTOR = "#login-btn"     # TODO: CSS selector for the login/submit button
+LOGIN_BUTTON_SELECTOR = "#btentrar"
 
 # Sequence of buttons to click AFTER login (in order).
 # Each entry is a CSS selector for the button/link to click.
