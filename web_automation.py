@@ -14,6 +14,7 @@ from pathlib import Path
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
@@ -45,6 +46,10 @@ DOWNLOAD_SELECTOR = "#download-file"    # TODO: replace with the download elemen
 # How long (seconds) to wait for elements to appear before giving up
 WAIT_TIMEOUT = 15
 
+# Path to chromedriver.exe — download from https://googlechromelabs.github.io/chrome-for-testing/
+# Must match your Chrome version (check at chrome://version/). Example: "C:\\chromedriver\\chromedriver.exe"
+CHROMEDRIVER_PATH = r"C:\chromedriver\chromedriver.exe"  # TODO: set your actual path
+
 # Folder where downloaded files will be saved (created automatically)
 DOWNLOAD_DIR = str(Path(__file__).parent / "downloads")
 
@@ -68,7 +73,8 @@ def create_driver() -> webdriver.Chrome:
     # Visible window — remove or comment out the line below to run headless:
     # options.add_argument("--headless=new")
 
-    driver = webdriver.Chrome(options=options)
+    service = Service(CHROMEDRIVER_PATH) if CHROMEDRIVER_PATH else None
+    driver = webdriver.Chrome(service=service, options=options)
     driver.maximize_window()
     return driver
 
