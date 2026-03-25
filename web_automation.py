@@ -36,8 +36,7 @@ LOGIN_BUTTON_SELECTOR = "#btentrar"
 # Sequence of buttons to click AFTER login (in order).
 # Each entry is a CSS selector for the button/link to click.
 BUTTONS_TO_CLICK = [
-    "#menu-reports",                     # TODO: replace with actual selectors
-    "#btn-generate",                     # TODO: replace with actual selectors
+    "#lnk37",   # Relatório de PIV
 ]
 
 # CSS selector for the download link or button
