@@ -105,10 +105,11 @@ def wait_for_download(directory: str, timeout: int = 60) -> bool:
     """
     deadline = time.time() + timeout
     while time.time() < deadline:
-        crdownloads = list(Path(directory).glob("*.crdownload"))
-        if not crdownloads:
-            # No in-progress downloads — check that at least one file exists
-            files = [f for f in Path(directory).iterdir() if f.is_file()]
+        in_progress = (list(Path(directory).glob("*.crdownload")) +
+                       list(Path(directory).glob("*.tmp")))
+        if not in_progress:
+            files = [f for f in Path(directory).iterdir()
+                     if f.is_file() and f.suffix not in (".crdownload", ".tmp")]
             if files:
                 return True
         time.sleep(1)
@@ -151,7 +152,11 @@ def download_file(driver: webdriver.Chrome) -> None:
     print(f"[3/4] Waiting for download to complete in: {DOWNLOAD_DIR}")
     success = wait_for_download(DOWNLOAD_DIR)
     if success:
-        files = sorted(Path(DOWNLOAD_DIR).iterdir(), key=lambda f: f.stat().st_mtime, reverse=True)
+        files = sorted(
+            [f for f in Path(DOWNLOAD_DIR).iterdir()
+             if f.is_file() and f.suffix not in (".crdownload", ".tmp")],
+            key=lambda f: f.stat().st_mtime, reverse=True
+        )
         print(f"[3/4] Download complete! Latest file: {files[0].name}")
     else:
         print("[3/4] WARNING: Download may not have finished within the timeout.")
