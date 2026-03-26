@@ -47,7 +47,7 @@ WAIT_TIMEOUT = 15
 
 # Path to chromedriver.exe — download from https://googlechromelabs.github.io/chrome-for-testing/
 # Must match your Chrome version (check at chrome://version/). Example: "C:\\chromedriver\\chromedriver.exe"
-CHROMEDRIVER_PATH = r"C:\chromedriver\chromedriver.exe"  # TODO: set your actual path
+CHROMEDRIVER_PATH = r"C:\Nova Pasta\chromedriver.exe"  # TODO: set your actual path
 
 # Folder where downloaded files will be saved (created automatically)
 DOWNLOAD_DIR = str(Path(__file__).parent / "downloads")
